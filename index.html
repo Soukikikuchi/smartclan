@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スマートクラン集客サポート</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0056b3, #00897b);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #0056b3;
+        }
+        
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff6b00;
+            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: #e55f00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .fixed-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-40 {
+            margin-top: 40px;
+        }
+        
+        .service-overview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .service-overview img {
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-overview-text {
+            flex: 1;
+            padding: 0 40px;
+        }
+        
+        .case-studies {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .case-item {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .price-plans {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .price-plan {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #0056b3;
+        }
+        
+        .strengths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .strength-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .strength-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .flow-steps {
+            counter-reset: step-counter;
+            margin: 40px 0;
+        }
+        
+        .flow-step {
+            position: relative;
+            padding: 30px 30px 30px 80px;
+            background-color: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .flow-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #ddd;
+        }
+        
+        .flow-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #0056b3;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .testimonial {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 26px;
+            }
+            
+            .service-overview {
+                flex-direction: column;
+            }
+            
+            .service-overview img {
+                margin-bottom: 30px;
+                max-width: 100%;
+            }
+            
+            .service-overview-text {
+                padding: 0;
+            }
+            
+            .fixed-btn {
+                width: 100%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダーセクション -->
+    <header>
+        <div class="container">
+            <h1>スマートクラン集客サポート<br>「集客に悩むすべての企業様へ。<br>スマートクランが"面談保証"で<br>売上増加と成約率向上への確実な一歩を提供します。」</h1>
+            <a href="#contact" class="btn">今すぐ無料相談する</a>
+        </div>
+    </header>
+
+    <!-- 固定ボタン -->
+    <a href="#contact" class="btn fixed-btn">今すぐ無料相談する</a>
+
+    <!-- サービス概要セクション -->
+    <section id="overview">
+        <div class="container">
+            <h2>サービス概要・導入メリット</h2>
+            <div class="service-overview">
+                <img src="/api/placeholder/500/350" alt="サービス概要イメージ">
+                <div class="service-overview-text">
+                    <h3>完全面談保証 × 事前電話フォロー</h3>
+                    <p>スマートクランは、貴社の集客課題を解決するための革新的なサポートサービスです。他社との大きな違いは「完全面談保証制度」。アポイント獲得だけでなく、実際の面談まで確実にサポートします。</p>
+                    <p>さらに、事前電話フォローにより見込み客の興味関心を高め、成約率の向上に直結。貴社の営業部門の負担を軽減しながら、効率的な商談機会を創出します。</p>
+                    <p>集客にかける時間とコストを最適化し、本来のビジネス成長に集中できる環境をご提供します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功事例セクション -->
+    <section id="case-studies">
+        <div class="container">
+            <h2>成功事例</h2>
+            <div class="case-studies">
+                <div class="case-item">
+                    <h3>株式会社A社（IT業界）</h3>
+                    <p><strong>課題:</strong> 新規顧客開拓の停滞と営業活動の非効率</p>
+                    <p><strong>導入効果:</strong> 導入3ヶ月で商談数150%増加、成約率30%向上</p>
+                    <p>スマートクランの面談保証制度により、質の高い見込み客との商談機会が格段に増加。事前フォローにより顧客ニーズを把握した状態で商談に臨めるようになり、成約率が大幅に向上しました。</p>
+                </div>
+                <div class="case-item">
+                    <h3>B株式会社（製造業）</h3>
+                    <p><strong>課題:</strong> リード獲得コストの高騰と営業人員の不足</p>
+                    <p><strong>導入効果:</strong> 顧客獲得コスト40%削減、営業工数60%減少</p>
+                    <p>従来の営業活動に比べて効率的なリード獲得を実現。営業担当者は有望な見込み客との商談に集中できるようになり、人的リソースの最適化と売上向上の両立に成功しました。</p>
+                </div>
+                <div class="case-item">
+                    <h3>C社（サービス業）</h3>
+                    <p><strong>課題:</strong> 地域密着型ビジネスの新規顧客開拓の壁</p>
+                    <p><strong>導入効果:</strong> 月間新規顧客数200%増、LTV20%向上</p>
+                    <p>地域特性を考慮した独自のアプローチでターゲット顧客へリーチ。面談前の丁寧なフォローにより顧客との信頼関係構築が加速し、初回成約だけでなく継続的な取引につながるケースが増加しました。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プランセクション -->
+    <section id="pricing">
+        <div class="container">
+            <h2>料金プラン</h2>
+            <div class="price-plans">
+                <div class="price-plan">
+                    <h3>スタータープラン</h3>
+                    <div class="price">98,000円〜/月</div>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>✓ 月間面談保証: 5件</li>
+                        <li>✓ 事前電話フォロー</li>
+                        <li>✓ 基本レポート提供</li>
+                        <li>✓ 初期設定サポート</li>
+                    </ul>
+                    <p>※最低契約期間: 3ヶ月</p>
+                </div>
+                <div class="price-plan" style="border: 2px solid #0056b3; position: relative;">
+                    <span style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #0056b3; color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold;">人気No.1</span>
+                    <h3>スタンダードプラン</h3>
+                    <div class="price">198,000円〜/月</div>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>✓ 月間面談保証: 10件</li>
+                        <li>✓ 事前電話フォロー</li>
+                        <li>✓ 詳細レポート提供</li>
+                        <li>✓ 初期設定サポート</li>
+                        <li>✓ 営業トーク改善提案</li>
+                        <li>✓ 月次戦略ミーティング</li>
+                    </ul>
+                    <p>※最低契約期間: 3ヶ月</p>
+                </div>
+                <div class="price-plan">
+                    <h3>プレミアムプラン</h3>
+                    <div class="price">298,000円〜/月</div>
+                    <ul style="list-style: none; text-align: left;">
+                        <li>✓ 月間面談保証: 15件以上</li>
+                        <li>✓ 優先事前電話フォロー</li>
+                        <li>✓ 高度分析レポート提供</li>
+                        <li>✓ VIP初期設定サポート</li>
+                        <li>✓ 営業戦略コンサルティング</li>
+                        <li>✓ 週次戦略ミーティング</li>
+                        <li>✓ カスタマイズ対応可</li>
+                    </ul>
+                    <p>※最低契約期間: 3ヶ月</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 強み・特徴セクション -->
+    <section id="strengths">
+        <div class="container">
+            <h2>スマートクランの強み</h2>
+            <div class="strengths">
+                <div class="strength-item">
+                    <img src="/api/placeholder/80/80" alt="面談保証アイコン">
+                    <h3>完全面談保証</h3>
+                    <p>アポイントだけでなく、実際の面談まで確実に実施。キャンセルが出た場合は必ず代替の面談を設定します。</p>
+                </div>
+                <div class="strength-item">
+                    <img src="/api/placeholder/80/80" alt="事前フォローアイコン">
+                    <h3>徹底的な事前フォロー</h3>
+                    <p>面談前の電話フォローで見込み客の興味関心を高め、商談の質を向上させます。</p>
+                </div>
+                <div class="strength-item">
+                    <img src="/api/placeholder/80/80" alt="データ分析アイコン">
+                    <h3>データに基づく改善提案</h3>
+                    <p>商談結果を詳細に分析し、継続的な改善提案を実施。成約率の向上を支援します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 導入の流れセクション -->
+    <section id="flow">
+        <div class="container">
+            <h2>導入の流れ</h2>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <h3>無料相談・ヒアリング</h3>
+                    <p>現状の課題や目標をお伺いし、最適なプランをご提案いたします。</p>
+                </div>
+                <div class="flow-step">
+                    <h3>プラン決定・契約</h3>
+                    <p>ご要望に合わせたプランを選定し、契約を締結します。</p>
+                </div>
+                <div class="flow-step">
+                    <h3>初期設定・戦略策定</h3>
+                    <p>ターゲット選定やアプローチ方法の確認、必要な資料の準備を行います。</p>
+                </div>
+                <div class="flow-step">
+                    <h3>サービス開始</h3>
+                    <p>面談アポイント獲得と事前フォローを開始し、確実な商談機会を創出します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お客様の声セクション -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>お客様の声</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <img src="/api/placeholder/60/60" alt="顧客写真" class="testimonial-image">
+                        <div>
+                            <h3>株式会社D社 営業部長</h3>
+                            <p>IT業界</p>
+                        </div>
+                    </div>
+                    <p>「面談保証制度により、確実な商談機会を得られるようになりました。事前フォローのおかげで、顧客のニーズを把握した状態で商談に臨めるため、成約率が大幅に向上しています。」</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <img src="/api/placeholder/60/60" alt="顧客写真" class="testimonial-image">
+                        <div>
+                            <h3>E株式会社 代表取締役</h3>
+                            <p>製造業</p>
+                        </div>
+                    </div>
+                    <p>「営業部門の工数が大幅に削減され、コア業務に集中できるようになりました。データに基づく改善提案も非常に参考になっています。」</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせフォームセクション -->
+    <section id="contact">
+        <div class="container">
+            <h2>無料相談のお申し込み</h2>
+            <div class="contact-form">
+                <form action="/submit" method="POST">
+                    <div class="form-group">
+                        <label for="company">会社名 *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">お名前 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号 *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">業種 *</label>
+                        <select id="industry" name="industry" required>
+                            <option value="">選択してください</option>
+                            <option value="it">IT・通信</option>
+                            <option value="manufacturing">製造業</option>
+                            <option value="service">サービス業</option>
+                            <option value="retail">小売業</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ご相談内容</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn">無料相談を申し込む</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer style="background-color: #333; color: white; padding: 40px 0; margin-top: 80px;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+                    <h3 style="color: white;">スマートクラン</h3>
+                    <p>〒100-0001<br>東京都千代田区1-1-1<br>スマートクランビル</p>
+                </div>
+                <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+                    <h3 style="color: white;">お問い合わせ</h3>
+                    <p>TEL: 03-1234-5678<br>営業時間: 平日 9:00-18:00</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p>&copy; 2024 スマートクラン All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
